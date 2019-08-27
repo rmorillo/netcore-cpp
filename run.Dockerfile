@@ -17,14 +17,8 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
 # Install .NET Core SDK 2.2
 RUN apt-get install -y apt-transport-https \
     && apt-get update -y \
-    && apt-get install -y dotnet-sdk-2.2
-
-# Install gcc g++ and cmake
-RUN apt-get install -y gcc g++ cmake
-
-# Install text editors
-RUN apt-get install -y vim nano
-    
+    && apt-get install -y dotnet-runtime-2.2
+   
 # Cleanup
 RUN apt-get autoremove -y \
     && apt-get clean
@@ -33,7 +27,4 @@ RUN apt-get autoremove -y \
 WORKDIR /home
 ENV HOME /home
 
-RUN dotnet tool install -g dotnet-reportgenerator-globaltool
-ENV PATH="${PATH}:~/.dotnet/tools"
-
-ENTRYPOINT ["./scripts/build.sh"]
+ENTRYPOINT ["./run.sh"]
