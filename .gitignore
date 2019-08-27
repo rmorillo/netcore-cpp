@@ -2,6 +2,10 @@ bin/
 Debug/
 obj/
 lib/
+CMakeFiles/
 .vs/
 packages/
 *.user
+CMakeCache.txt
+Makefile
+*.cmake

@@ -18,7 +18,9 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
 RUN apt-get install -y apt-transport-https \
     && apt-get update -y \
     && apt-get install -y dotnet-sdk-2.2
-    
+
+# Install gcc g++ and cmake
+RUN apt-get install -y gcc g++ cmake
 
 # Install text editors
 RUN apt-get install -y vim nano
@@ -34,7 +36,3 @@ ENV HOME /home
 
 RUN dotnet tool install -g dotnet-reportgenerator-globaltool
 ENV PATH="${PATH}:~/.dotnet/tools"
-
-# Setup registry folder
-RUN mkdir /home/registry && chmod -R a+wrx /home/registry
-ENV INVINCIBLE_TRADER_TEST_REGISTRY_HOME /home/registry
